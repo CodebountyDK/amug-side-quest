@@ -1,357 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AMUG Side Quest NPC</title>
- <style>
-  :root {
-    --bg: #ffffff;
-    --text: #000000;
-    --accent: #000000;
-    --border: #000000;
-    --panel: #ffffff;
-    --muted: #333333;
-  }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMUG Side Quest NPC</title>
 
-  * {
-    box-sizing: border-box;
-  }
+<style>
 
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: "Courier New", Courier, monospace;
-    min-height: 100vh;
-  }
-
-  .page {
-    max-width: 980px;
-    margin: 0 auto;
-    padding: 8px 10px 14px;
-    text-align: center;
-  }
-
-  .title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    font-size: clamp(18px, 4.8vw, 32px);
-    font-weight: 900;
-    letter-spacing: 1px;
-    color: var(--accent);
-    margin: 2px 0 10px;
-    text-transform: uppercase;
-    line-height: 1.1;
-  }
-
-  .title .emoji {
-    font-size: 0.75em;
-    line-height: 1;
-  }
-
-  .generate-wrap {
-    margin-bottom: 10px;
-  }
-
-  .generate-btn {
-    background: var(--panel);
-    color: var(--text);
-    border: 2px solid var(--border);
-    box-shadow: 0 0 0 2px #d9d9d9;
-    padding: 10px 20px;
-    font-family: "Courier New", Courier, monospace;
-    font-size: clamp(16px, 4vw, 22px);
-    cursor: pointer;
-    min-width: 190px;
-  }
-
-  .generate-btn:hover {
-    background: #f3f3f3;
-  }
-
-  .quest-card {
-    border: 2px dashed var(--border);
-    padding: 10px 10px 9px;
-    margin: 0 auto 10px;
-    background: var(--panel);
-    max-width: 860px;
-  }
-
- .quest-rarity {
-  font-size: clamp(18px, 4vw, 26px);
-  font-weight: 900;
-  text-transform: uppercase;
-  margin-bottom: 6px;
-  color: var(--accent);
-  letter-spacing: 1px;
+:root{
+  --bg:#ffffff;
+  --text:#000000;
+  --accent:#000000;
+  --border:#000000;
 }
 
-.quest-id {
-  display: inline-block;
-  border: 2px solid var(--border);
-  padding: 3px 7px;
-  margin-bottom: 7px;
-  font-size: 12px;
-  font-weight: 900;
+*{
+  box-sizing:border-box;
 }
 
- .quest-text {
-  font-size: clamp(15px, 3.5vw, 19px);
-  line-height: 1.25;
-  margin-bottom: 7px;
-  font-weight: 700;
-  letter-spacing: 0.3px;
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Courier New", Courier, monospace;
+  text-rendering:optimizeLegibility;
 }
 
-  .quest-note {
-    font-size: 11px;
-    line-height: 1.25;
-    color: var(--muted);
-    max-width: 680px;
-    margin: 0 auto;
-  }
+.page{
+  max-width:900px;
+  margin:auto;
+  padding:10px;
+  text-align:center;
+}
 
-  .footer-note {
-    margin-top: 2px;
-    font-size: 11px;
-    color: var(--muted);
-  }
+.title{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+  font-size:clamp(22px,5vw,36px);
+  font-weight:900;
+  margin-bottom:10px;
+  letter-spacing:1px;
+}
 
-  @media print {
-    body {
-      background: #ffffff;
-      color: #000000;
-    }
+.generate-wrap{
+  margin-bottom:10px;
+}
 
-    .page {
-      max-width: none;
-      padding: 0.2in;
-    }
+.generate-btn{
+  background:white;
+  border:3px solid black;
+  padding:12px 26px;
+  font-size:20px;
+  font-weight:800;
+  font-family:"Courier New", Courier, monospace;
+  cursor:pointer;
+}
 
-    .generate-wrap {
-      display: none;
-    }
+.generate-btn:hover{
+  background:#f3f3f3;
+}
 
-    .quest-card {
-      break-inside: avoid;
-    }
-  }
+.quest-card{
+
+  border:3px dashed black;
+  padding:14px 12px;
+  margin-bottom:12px;
+
+}
+
+.quest-rarity{
+  font-size:22px;
+  font-weight:900;
+  margin-bottom:8px;
+}
+
+.quest-id{
+  border:2px solid black;
+  display:inline-block;
+  padding:3px 8px;
+  font-size:13px;
+  font-weight:900;
+  margin-bottom:8px;
+}
+
+.quest-text{
+  font-size:22px;
+  font-weight:800;
+  line-height:1.25;
+}
+
+.footer{
+  margin-top:10px;
+  font-size:14px;
+  font-weight:700;
+}
+
+@media print{
+
+.generate-wrap{
+display:none;
+}
+
+body{
+background:white;
+color:black;
+}
+
+}
+
 </style>
+
 </head>
+
 <body>
-  <div class="page">
-    <div class="title">
-      <span class="emoji">🎮</span>
-      <span>AMUG SIDE QUEST NPC</span>
-      <span class="emoji">🎮</span>
-    </div>
 
-    <div class="generate-wrap">
-      <button id="generateBtn" class="generate-btn" type="button">Generate Quests</button>
-    </div>
+<div class="page">
 
-    <div id="questContainer"></div>
+<div class="title">
+🎮 AMUG SIDE QUEST NPC 🎮
+</div>
 
-    <div class="footer-note">
-      Each click generates one new Common, Rare, and Legendary quest.
-    </div>
-  </div>
+<div class="generate-wrap">
+<button id="generateBtn" class="generate-btn">Generate Quests</button>
+</div>
 
-  <script>
-    const common = [
-      { id: "C-001", text: "Take a picture with someone who is attending AMUG for the first time." },
-      { id: "C-003", text: "Take a picture with someone who has used PLA filament." },
-      { id: "C-004", text: "Take a picture with someone who has had a print fail overnight." },
-      { id: "C-005", text: "Take a picture with someone who owns a personal 3D printer." },
-      { id: "C-008", text: "Take a picture with someone who has designed a part in CAD." },
-      { id: "C-009", text: "Take a picture with someone who has printed a functional part." },
-      { id: "C-011", text: "Take a picture with someone who has changed a printer nozzle." },
-      { id: "C-012", text: "Take a picture with someone who has leveled a print bed." },
-      { id: "C-014", text: "Take a picture with someone who has used Cura or PrusaSlicer." },
-      { id: "C-015", text: "Take a picture with someone who has printed a phone stand." },
-      { id: "C-016", text: "Take a picture with someone who has printed a tool or jig." },
-      { id: "C-017", text: "Take a picture with someone who has used PETG filament." },
-      { id: "C-019", text: "Take a picture with someone who has printed a replacement part." },
-      { id: "C-023", text: "Take a picture with someone who works in engineering." },
-      { id: "C-024", text: "Take a picture with someone who works in product development." },
-      { id: "C-025", text: "Take a picture with someone who works with manufacturing." },
-      { id: "C-026", text: "Take a picture with someone who has seen a metal 3D printer in person." },
-      { id: "C-027", text: "Take a picture with someone who has printed something decorative." },
-      { id: "C-028", text: "Take a picture with someone who has printed something useful at home." },
-      { id: "C-029", text: "Take a picture with someone who has used a resin printer." },
-      { id: "C-030", text: "Take a picture with someone who has used a filament printer." },
-      { id: "C-031", text: "Take a picture with someone who has modified a printer." },
-      { id: "C-032", text: "Take a picture with someone who has replaced a build plate." },
-      { id: "C-033", text: "Take a picture with someone who has tried a new material recently." },
-      { id: "C-035", text: "Take a picture with someone who has attended AMUG before." },
-      { id: "C-036", text: "Take a picture with someone who traveled to AMUG from another state." },
-      { id: "C-040", text: "Take a picture with someone who has printed something larger than 10 inches." },
-      { id: "C-041", text: "Take a picture with someone who has experimented with infill patterns." },
-      { id: "C-043", text: "Take a picture with someone who has printed something that moved." },
-      { id: "C-044", text: "Take a picture with someone who has printed a hinge." },
-      { id: "C-045", text: "Take a picture with someone who has printed a threaded part." },
-      { id: "C-048", text: "Take a picture with someone who has printed a multi-part assembly." },
-      { id: "C-049", text: "Take a picture with someone who has seen a printer farm." },
-      { id: "C-051", text: "Take a picture with someone wearing AMUG flair from a previous year." },
-      { id: "C-052", text: "Take a picture with someone who traveled from another country to attend AMUG." },
-      { id: "C-053", text: "Take a picture with someone who has worked in additive manufacturing for more than 10 years." },
-      { id: "C-054", text: "Take a picture with someone who designed a part that is currently being manufactured." },
-      { id: "C-055", text: "Take a picture with someone who has redesigned a part specifically for additive manufacturing." },
-      { id: "C-056", text: "Take a picture with someone who works in additive materials development." },
-      { id: "C-057", text: "Take a picture with someone who works in additive design engineering." },
-      { id: "C-058", text: "Take a picture with someone who works for a manufacturing company exploring additive manufacturing." },
-      { id: "C-059", text: "Take a picture with someone who asked a question during an AMUG presentation today." },
-      { id: "C-061", text: "Take a picture with someone who traveled more than 1000 miles to attend AMUG." },
-      { id: "C-062", text: "Take a picture with someone who has printed a part larger than their head." },
-      { id: "C-063", text: "Take a picture with someone who has redesigned a traditional manufacturing part for additive." },
-      { id: "C-064", text: "Take a picture with someone who works in additive manufacturing research." },
-      { id: "C-065", text: "Take a picture with someone who has implemented additive manufacturing in their workplace." },
-      { id: "C-067", text: "Take a picture with someone who works for a company that uses additive manufacturing in production." },
-      { id: "C-068", text: "Take a picture with someone who has helped teach another person how to use a 3D printer." },
-      { id: "C-069", text: "Take a picture with someone who has a 3D printed part with them at AMUG." },
-      { id: "C-070", text: "Take a picture with someone who has visited AMUG five or more times." }
-    ];
+<div id="questContainer"></div>
 
-    const rare = [
-      { id: "R-001", text: "Take a picture with someone who runs more than five printers." },
-      { id: "R-002", text: "Take a picture with someone who prints carbon-fiber-filled material." },
-      { id: "R-003", text: "Take a picture with someone who uses HP Multi Jet Fusion." },
-      { id: "R-004", text: "Take a picture with someone who works with metal additive manufacturing." },
-      { id: "R-005", text: "Take a picture with someone who has designed lattice structures." },
-      { id: "R-006", text: "Take a picture with someone who runs a print farm." },
-      { id: "R-007", text: "Take a picture with someone who prints nylon regularly." },
-      { id: "R-008", text: "Take a picture with someone who prints with engineering-grade materials." },
-      { id: "R-009", text: "Take a picture with someone who has optimized parts for additive manufacturing." },
-      { id: "R-010", text: "Take a picture with someone who has replaced printer firmware." },
-      { id: "R-011", text: "Take a picture with someone who has built their own printer." },
-      { id: "R-012", text: "Take a picture with someone who works in aerospace manufacturing." },
-      { id: "R-013", text: "Take a picture with someone who works in medical device manufacturing." },
-      { id: "R-014", text: "Take a picture with someone who has used topology optimization." },
-      { id: "R-015", text: "Take a picture with someone who has printed functional tooling." },
-      { id: "R-016", text: "Take a picture with someone who prints production parts." },
-      { id: "R-017", text: "Take a picture with someone who manages additive machines professionally." },
-      { id: "R-018", text: "Take a picture with someone who has worked with powder-based printing." },
-      { id: "R-019", text: "Take a picture with someone who has used laser sintering." },
-      { id: "R-020", text: "Take a picture with someone who has printed parts for automotive use." },
-      { id: "R-021", text: "Take a picture with someone who works at a company deploying additive at scale." },
-      { id: "R-022", text: "Take a picture with someone who has designed for lightweighting." },
-      { id: "R-023", text: "Take a picture with someone who has printed flexible materials." },
-      { id: "R-024", text: "Take a picture with someone who has used additive for end-use products." },
-      { id: "R-025", text: "Take a picture with someone who has optimized print orientation for strength." },
-      { id: "R-026", text: "Take a picture with someone who uses additive for jigs and fixtures." },
-      { id: "R-027", text: "Take a picture with someone who has attended more than three AMUG conferences." },
-      { id: "R-028", text: "Take a picture with someone who has given a talk at AMUG." },
-      { id: "R-029", text: "Take a picture with someone who works at a printer OEM." },
-      { id: "R-030", text: "Take a picture with someone who works in additive materials science." },
-      { id: "R-031", text: "Take a picture with someone who prints in PA12." },
-      { id: "R-033", text: "Take a picture with someone who uses simulation for additive builds." },
-      { id: "R-034", text: "Take a picture with someone who prints parts that must pass inspection." },
-      { id: "R-035", text: "Take a picture with someone who has reduced part count using additive." },
-      { id: "R-036", text: "Take a picture with someone who works in additive design consulting." },
-      { id: "R-037", text: "Take a picture with someone who has automated post-processing." },
-      { id: "R-038", text: "Take a picture with someone who works with additive workflow software." },
-      { id: "R-039", text: "Take a picture with someone who manages additive production schedules." },
-      { id: "R-040", text: "Take a picture with someone who has validated printed parts for production." },
-      { id: "R-041", text: "Take a picture with someone who works with additive supply chains." },
-      { id: "R-042", text: "Take a picture with someone who prints parts with embedded features." },
-      { id: "R-043", text: "Take a picture with someone who has redesigned a legacy part for additive." },
-      { id: "R-044", text: "Take a picture with someone who works with industrial printers." },
-      { id: "R-045", text: "Take a picture with someone who works in additive R&D." },
-      { id: "R-046", text: "Take a picture with someone who has built a custom material profile." },
-      { id: "R-047", text: "Take a picture with someone who has optimized support structures." },
-      { id: "R-048", text: "Take a picture with someone who uses additive for rapid tooling." },
-      { id: "R-049", text: "Take a picture with someone who runs a digital manufacturing workflow." },
-      { id: "R-050", text: "Take a picture with someone who has saved money using additive manufacturing." },
-      { id: "R-051", text: "Take a picture with someone who has printed a part larger than 24 inches (600 mm)." }
-    ];
+<div class="footer">
+Bring your photo evidence to the <b>SAVE POINT NPC</b>
+</div>
 
-    const legendary = [
-      { id: "L-001", text: "Take a picture with someone who has printed titanium parts." },
-      { id: "L-002", text: "Take a picture with someone who runs a print farm with more than 50 printers." },
-      { id: "L-003", text: "Take a picture with someone who works at a major additive OEM." },
-      { id: "L-004", text: "Take a picture with someone who designed a part now produced via additive." },
-      { id: "L-005", text: "Take a picture with someone who has flown on an airplane with parts they helped print." },
-      { id: "L-006", text: "Take a picture with someone whose company prints thousands of parts annually." },
-      { id: "L-007", text: "Take a picture with someone who pioneered additive at their company." },
-      { id: "L-008", text: "Take a picture with someone who has helped certify additive parts." },
-      { id: "L-009", text: "Take a picture with someone who has printed aerospace-grade metal parts." },
-      { id: "L-010", text: "Take a picture with someone who works in rocket or space hardware manufacturing." },
-      { id: "L-011", text: "Take a picture with someone who runs additive manufacturing at an enterprise scale." },
-      { id: "L-012", text: "Take a picture with someone who has helped launch an additive startup." },
-      { id: "L-013", text: "Take a picture with someone who has written a paper about additive manufacturing." },
-      { id: "L-014", text: "Take a picture with someone who teaches additive manufacturing professionally." },
-      { id: "L-015", text: "Take a picture with someone who has redesigned a product entirely for additive." },
-      { id: "L-016", text: "Take a picture with someone who runs additive production 24/7." },
-      { id: "L-017", text: "Take a picture with someone who manages a large additive engineering team." },
-      { id: "L-018", text: "Take a picture with someone who has worked with topology optimization in production." },
-      { id: "L-019", text: "Take a picture with someone who helped bring a printer technology to market." },
-      { id: "L-020", text: "Take a picture with someone who has patented additive manufacturing technology." },
-      { id: "L-021", text: "Take a picture with someone who has built a digital factory using additive." },
-      { id: "L-022", text: "Take a picture with someone who has printed medical implants." },
-      { id: "L-023", text: "Take a picture with someone who has printed orthopedic devices." },
-      { id: "L-024", text: "Take a picture with someone who has printed parts for Formula 1 or racing." },
-      { id: "L-025", text: "Take a picture with someone who has printed turbine components." },
-      { id: "L-026", text: "Take a picture with someone who has helped qualify additive materials." },
-      { id: "L-027", text: "Take a picture with someone who has published additive research." },
-      { id: "L-028", text: "Take a picture with someone who has spoken on the AMUG main stage." },
-      { id: "L-029", text: "Take a picture with someone who has been in additive manufacturing for 15+ years." },
-      { id: "L-030", text: "Take a picture with someone who remembers the early days of AMUG." },
-      { id: "L-031", text: "Take a picture with someone who worked on one of the first industrial printers." },
-      { id: "L-032", text: "Take a picture with someone who leads additive strategy for a large company." },
-      { id: "L-033", text: "Take a picture with someone who has helped scale additive globally." },
-      { id: "L-034", text: "Take a picture with someone who has built a multi-site additive network." },
-      { id: "L-035", text: "Take a picture with someone who has integrated additive into mass production." },
-      { id: "L-036", text: "Take a picture with someone who has designed generative geometry for production." },
-      { id: "L-037", text: "Take a picture with someone who has automated additive production pipelines." },
-      { id: "L-038", text: "Take a picture with someone who has printed parts for satellites." },
-      { id: "L-039", text: "Take a picture with someone who works on additive certification standards." },
-      { id: "L-040", text: "Take a picture with someone who has contributed to ASTM additive standards." },
-      { id: "L-041", text: "Take a picture with someone who runs additive for defense applications." },
-      { id: "L-042", text: "Take a picture with someone who has scaled additive across multiple factories." },
-      { id: "L-043", text: "Take a picture with someone who has implemented additive for spare parts on demand." },
-      { id: "L-044", text: "Take a picture with someone who has printed components used in surgery." },
-      { id: "L-045", text: "Take a picture with someone who has redesigned a product line using additive." },
-      { id: "L-046", text: "Take a picture with someone who helped build an additive center of excellence." },
-      { id: "L-047", text: "Take a picture with someone who has deployed additive manufacturing worldwide." },
-      { id: "L-048", text: "Take a picture with someone who helped invent a new additive material." },
-      { id: "L-049", text: "Take a picture with someone who has built a company around additive manufacturing." },
-      { id: "L-050", text: "Take a picture with someone who believes additive will transform manufacturing." }
-    ];
+</div>
 
-    function randomQuest(list) {
-      return list[Math.floor(Math.random() * list.length)];
-    }
+<script>
 
-    function renderCard(rarityLabel, quest) {
-      return `
-        <div class="quest-card">
-          <div class="quest-rarity">${rarityLabel}</div>
-          <div class="quest-id">${quest.id}</div>
-          <div class="quest-text">${quest.text}</div>
-          <div class="quest-note">
-            Bring your photo evidence to the <strong>SAVE POINT NPC</strong>.
-          </div>
-        </div>
-      `;
-    }
+const common = [
+{id:"C-001",text:"Take a picture with someone attending AMUG for the first time"},
+{id:"C-002",text:"Take a picture with someone who owns a personal 3D printer"},
+{id:"C-003",text:"Take a picture with someone who has printed a functional part"},
+{id:"C-004",text:"Take a picture with someone who has had a print fail overnight"},
+{id:"C-005",text:"Take a picture with someone who has modified a 3D printer"},
+{id:"C-006",text:"Take a picture with someone who has used a resin printer"},
+{id:"C-007",text:"Take a picture with someone who has used PETG filament"},
+{id:"C-008",text:"Take a picture with someone who has designed a part in CAD"},
+{id:"C-009",text:"Take a picture with someone who has printed a replacement part"},
+{id:"C-010",text:"Take a picture with someone who has leveled a print bed"},
+{id:"C-011",text:"Take a picture with someone wearing AMUG flair from a previous year"},
+{id:"C-012",text:"Take a picture with someone who traveled to AMUG from another state"},
+{id:"C-013",text:"Take a picture with someone who works in engineering"},
+{id:"C-014",text:"Take a picture with someone who works in manufacturing"},
+{id:"C-015",text:"Take a picture with someone who works in product development"}
+]
 
-    function generateQuests() {
-      const commonQuest = randomQuest(common);
-      const rareQuest = randomQuest(rare);
-      const legendaryQuest = randomQuest(legendary);
+const rare=[
+{id:"R-001",text:"Take a picture with someone running a print farm"},
+{id:"R-002",text:"Take a picture with someone printing carbon fiber materials"},
+{id:"R-003",text:"Take a picture with someone who uses HP Multi Jet Fusion"},
+{id:"R-004",text:"Take a picture with someone printing production parts"},
+{id:"R-005",text:"Take a picture with someone working in aerospace manufacturing"},
+{id:"R-006",text:"Take a picture with someone who has designed lattice structures"},
+{id:"R-007",text:"Take a picture with someone who has used topology optimization"},
+{id:"R-008",text:"Take a picture with someone printing nylon parts"},
+{id:"R-009",text:"Take a picture with someone who has built their own printer"},
+{id:"R-010",text:"Take a picture with someone who has printed flexible materials"}
+]
 
-      document.getElementById("questContainer").innerHTML =
-        renderCard("COMMON QUEST", commonQuest) +
-        renderCard("RARE QUEST", rareQuest) +
-        renderCard("LEGENDARY QUEST", legendaryQuest);
-    }
+const legendary=[
+{id:"L-001",text:"Take a picture with someone who prints titanium parts"},
+{id:"L-002",text:"Take a picture with someone running over fifty printers"},
+{id:"L-003",text:"Take a picture with someone who helped pioneer additive at their company"},
+{id:"L-004",text:"Take a picture with someone who has patented additive technology"},
+{id:"L-005",text:"Take a picture with someone who helped bring a printer to market"},
+{id:"L-006",text:"Take a picture with someone who works on additive standards"},
+{id:"L-007",text:"Take a picture with someone who runs additive production 24/7"},
+{id:"L-008",text:"Take a picture with someone who printed aerospace flight hardware"},
+{id:"L-009",text:"Take a picture with someone who built a digital additive factory"},
+{id:"L-010",text:"Take a picture with someone who helped scale additive globally"}
+]
 
-    document.getElementById("generateBtn").addEventListener("click", generateQuests);
+function randomQuest(list){
+return list[Math.floor(Math.random()*list.length)]
+}
 
-    generateQuests();
-  </script>
+function renderCard(label,quest){
+
+return `
+<div class="quest-card">
+<div class="quest-rarity">${label}</div>
+<div class="quest-id">${quest.id}</div>
+<div class="quest-text">${quest.text}</div>
+</div>
+`
+
+}
+
+function generateQuests(){
+
+const c=randomQuest(common)
+const r=randomQuest(rare)
+const l=randomQuest(legendary)
+
+document.getElementById("questContainer").innerHTML=
+
+renderCard("COMMON QUEST",c)+
+renderCard("RARE QUEST",r)+
+renderCard("LEGENDARY QUEST",l)
+
+}
+
+document.getElementById("generateBtn").addEventListener("click",generateQuests)
+
+generateQuests()
+
+</script>
+
 </body>
 </html>
