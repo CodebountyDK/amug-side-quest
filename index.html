@@ -4,138 +4,140 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AMUG Side Quest NPC</title>
-  <style>
-    :root {
-      --bg: #ffffff;
-      --text: #000000;
-      --accent: #000000;
-      --border: #000000;
-      --panel: #ffffff;
-      --muted: #333333;
-    }
+ <style>
+  :root {
+    --bg: #ffffff;
+    --text: #000000;
+    --accent: #000000;
+    --border: #000000;
+    --panel: #ffffff;
+    --muted: #333333;
+  }
 
-    * {
-      box-sizing: border-box;
-    }
+  * {
+    box-sizing: border-box;
+  }
 
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Courier New", Courier, monospace;
+    min-height: 100vh;
+  }
+
+  .page {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 8px 10px 14px;
+    text-align: center;
+  }
+
+  .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: clamp(18px, 4.8vw, 32px);
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--accent);
+    margin: 2px 0 10px;
+    text-transform: uppercase;
+    line-height: 1.1;
+  }
+
+  .title .emoji {
+    font-size: 0.75em;
+    line-height: 1;
+  }
+
+  .generate-wrap {
+    margin-bottom: 10px;
+  }
+
+  .generate-btn {
+    background: var(--panel);
+    color: var(--text);
+    border: 2px solid var(--border);
+    box-shadow: 0 0 0 2px #d9d9d9;
+    padding: 10px 20px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: clamp(16px, 4vw, 22px);
+    cursor: pointer;
+    min-width: 190px;
+  }
+
+  .generate-btn:hover {
+    background: #f3f3f3;
+  }
+
+  .quest-card {
+    border: 2px dashed var(--border);
+    padding: 10px 10px 9px;
+    margin: 0 auto 10px;
+    background: var(--panel);
+    max-width: 860px;
+  }
+
+  .quest-rarity {
+    font-size: clamp(18px, 4vw, 26px);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    color: var(--accent);
+    line-height: 1.1;
+  }
+
+  .quest-id {
+    display: inline-block;
+    border: 1px solid var(--border);
+    padding: 3px 7px;
+    margin-bottom: 7px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .quest-text {
+    font-size: clamp(15px, 3.5vw, 19px);
+    line-height: 1.22;
+    margin-bottom: 7px;
+  }
+
+  .quest-note {
+    font-size: 11px;
+    line-height: 1.25;
+    color: var(--muted);
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .footer-note {
+    margin-top: 2px;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  @media print {
     body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: "Courier New", Courier, monospace;
-      min-height: 100vh;
+      background: #ffffff;
+      color: #000000;
     }
 
     .page {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 20px 18px 40px;
-      text-align: center;
-    }
-
-    .title {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 18px;
-      font-size: clamp(30px, 5vw, 58px);
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: var(--accent);
-      margin: 8px 0 24px;
-      text-transform: uppercase;
-    }
-
-    .title .emoji {
-      font-size: 0.75em;
-      line-height: 1;
+      max-width: none;
+      padding: 0.2in;
     }
 
     .generate-wrap {
-      margin-bottom: 28px;
-    }
-
-    .generate-btn {
-      background: var(--panel);
-      color: var(--text);
-      border: 3px solid var(--border);
-      box-shadow: 0 0 0 3px #d9d9d9;
-      padding: 22px 46px;
-      font-family: "Courier New", Courier, monospace;
-      font-size: clamp(20px, 3vw, 30px);
-      cursor: pointer;
-      min-width: 280px;
-    }
-
-    .generate-btn:hover {
-      background: #f3f3f3;
+      display: none;
     }
 
     .quest-card {
-      border: 4px dashed var(--border);
-      padding: 34px 26px 30px;
-      margin: 0 auto 34px;
-      background: var(--panel);
-      max-width: 860px;
+      break-inside: avoid;
     }
-
-    .quest-rarity {
-      font-size: clamp(28px, 4vw, 44px);
-      font-weight: 700;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-      color: var(--accent);
-    }
-
-    .quest-id {
-      display: inline-block;
-      border: 2px solid var(--border);
-      padding: 6px 12px;
-      margin-bottom: 18px;
-      font-size: 18px;
-      font-weight: 700;
-    }
-
-    .quest-text {
-      font-size: clamp(22px, 3vw, 28px);
-      line-height: 1.4;
-      margin-bottom: 20px;
-    }
-
-    .quest-note {
-      font-size: 16px;
-      line-height: 1.45;
-      color: var(--muted);
-      max-width: 680px;
-      margin: 0 auto;
-    }
-
-    .footer-note {
-      margin-top: 6px;
-      font-size: 14px;
-      color: var(--muted);
-    }
-
-    @media print {
-      body {
-        background: #ffffff;
-        color: #000000;
-      }
-
-      .page {
-        max-width: none;
-        padding: 0.3in;
-      }
-
-      .generate-wrap {
-        display: none;
-      }
-
-      .quest-card {
-        break-inside: avoid;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
   <div class="page">
