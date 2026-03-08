@@ -3,126 +3,137 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AMUG 2026 Side Quest List</title>
+  <title>AMUG 2026 Side Quest Generator</title>
   <style>
-    :root{
-      --bg:#ffffff;
-      --text:#000000;
-      --border:#000000;
-      --muted:#555555;
+    :root {
+      --bg: #ffffff;
+      --text: #000000;
+      --border: #000000;
+      --muted: #555555;
     }
 
-    *{
-      box-sizing:border-box;
-    }
+    * { box-sizing: border-box; }
 
-    body{
-      margin:0;
+    body {
+      margin: 0;
+      padding: 24px;
       font-family: Arial, Helvetica, sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      line-height:1.35;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.35;
     }
 
-    .page{
-      max-width:1100px;
-      margin:0 auto;
-      padding:32px 24px 48px;
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
     }
 
-    h1,h2,h3,p{
-      margin-top:0;
+    .header {
+      border: 2px solid var(--border);
+      padding: 20px;
+      margin-bottom: 20px;
+      background: #fff;
     }
 
-    .header{
-      border:2px solid var(--border);
-      padding:20px;
-      margin-bottom:24px;
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      margin-bottom: 8px;
+      font-size: 32px;
     }
 
-    .header h1{
-      font-size:32px;
-      margin-bottom:8px;
+    .subtle {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 0;
     }
 
-    .header p{
-      margin-bottom:8px;
+    .controls {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
     }
 
-    .note{
-      color:var(--muted);
-      font-size:14px;
+    button {
+      appearance: none;
+      border: 2px solid var(--border);
+      background: #fff;
+      color: var(--text);
+      padding: 12px 18px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
     }
 
-    .section{
-      border:2px solid var(--border);
-      padding:20px;
-      margin-bottom:24px;
-      page-break-inside:avoid;
+    button:hover {
+      background: #f5f5f5;
     }
 
-    .section h2{
-      font-size:26px;
-      margin-bottom:8px;
+    .quest-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
     }
 
-    .section-intro{
-      margin-bottom:16px;
-      font-size:14px;
+    .quest-card {
+      border: 2px solid var(--border);
+      padding: 18px;
+      background: #fff;
     }
 
-    .quest-list{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:10px;
+    .quest-rarity {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+      text-transform: uppercase;
     }
 
-    .quest{
-      border:1px solid var(--border);
-      padding:10px 12px;
-      page-break-inside:avoid;
+    .quest-id {
+      display: inline-block;
+      border: 1px solid var(--border);
+      padding: 3px 8px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 12px;
     }
 
-    .quest-id{
-      font-weight:700;
-      font-size:13px;
-      margin-bottom:4px;
+    .quest-text {
+      font-size: 20px;
+      margin-bottom: 14px;
     }
 
-    .quest-text{
-      font-size:15px;
+    .quest-note {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 0;
     }
 
-    .footer{
-      border-top:2px solid var(--border);
-      padding-top:16px;
-      font-size:14px;
+    .legend {
+      margin-top: 22px;
+      border: 2px solid var(--border);
+      padding: 16px 18px;
+      font-size: 14px;
     }
 
-    @media (min-width: 900px){
-      .quest-list{
-        grid-template-columns:1fr 1fr;
+    @media (min-width: 900px) {
+      .quest-grid {
+        grid-template-columns: repeat(3, 1fr);
       }
     }
 
-    @media print{
-      body{
-        background:#ffffff;
-        color:#000000;
+    @media print {
+      body {
+        padding: 0.35in;
       }
 
-      .page{
-        max-width:none;
-        padding:0.35in;
+      .controls {
+        display: none;
       }
 
-      .section, .header{
-        break-inside:avoid;
-      }
-
-      a{
-        color:#000000;
-        text-decoration:none;
+      .quest-card, .header, .legend {
+        break-inside: avoid;
       }
     }
   </style>
@@ -130,32 +141,20 @@
 <body>
   <div class="page">
     <div class="header">
-      <h1>AMUG 2026 Side Quest System</h1>
-      <p><strong>How it works:</strong> Adventurers complete a quest by taking photo evidence, then bring their proof to the <strong>SAVE POINT NPC</strong> for verification and token reward.</p>
-      <p><strong>Proof requirement:</strong> Bring your photo evidence to the <strong>SAVE POINT NPC</strong>.</p>
-      <p class="note">Quest IDs are persistent so successful quests can be tracked and referenced in future years.</p>
+      <h1>AMUG 2026 Side Quest Generator</h1>
+      <p><strong>How it works:</strong> Tap <strong>Generate Quests</strong> to randomly display one Common, one Rare, and one Legendary quest.</p>
+      <p><strong>Completion rule:</strong> Bring your photo evidence to the <strong>SAVE POINT NPC</strong>.</p>
+      <p class="subtle">Quest IDs are persistent so successful quests can be tracked in future years.</p>
     </div>
 
-    <div id="common-section" class="section">
-      <h2>Common Quests</h2>
-      <p class="section-intro">Designed to be approachable and conversation-friendly. Reward: <strong>Common Token</strong></p>
-      <div id="common-list" class="quest-list"></div>
+    <div class="controls">
+      <button id="generateBtn" type="button">Generate Quests</button>
     </div>
 
-    <div id="rare-section" class="section">
-      <h2>Rare Quests</h2>
-      <p class="section-intro">These require more specific experience, expertise, or AMUG history. Reward: <strong>Rare Token</strong></p>
-      <div id="rare-list" class="quest-list"></div>
-    </div>
+    <div id="questGrid" class="quest-grid"></div>
 
-    <div id="legendary-section" class="section">
-      <h2>Legendary Quests</h2>
-      <p class="section-intro">Reserved for exceptional experience, influence, or advanced additive manufacturing accomplishments. Reward: <strong>Legendary Token</strong></p>
-      <div id="legendary-list" class="quest-list"></div>
-    </div>
-
-    <div class="footer">
-      <p><strong>Save Point reminder:</strong> Verify the photo, log the Quest ID, note the adventurer, and award the correct token.</p>
+    <div class="legend">
+      <strong>Save Point reminder:</strong> Verify the photo, log the Quest ID, note the adventurer, and award the matching token rarity.
     </div>
   </div>
 
@@ -194,7 +193,6 @@
       { id: "C-045", text: "Take a picture with someone who has printed a threaded part." },
       { id: "C-048", text: "Take a picture with someone who has printed a multi-part assembly." },
       { id: "C-049", text: "Take a picture with someone who has seen a printer farm." },
-
       { id: "C-051", text: "Take a picture with someone wearing AMUG flair from a previous year." },
       { id: "C-052", text: "Take a picture with someone who traveled from another country to attend AMUG." },
       { id: "C-053", text: "Take a picture with someone who has worked in additive manufacturing for more than 10 years." },
@@ -204,13 +202,11 @@
       { id: "C-057", text: "Take a picture with someone who works in additive design engineering." },
       { id: "C-058", text: "Take a picture with someone who works for a manufacturing company exploring additive manufacturing." },
       { id: "C-059", text: "Take a picture with someone who asked a question during an AMUG presentation today." },
-      { id: "C-060", text: "Take a picture with someone who is attending AMUG for the first time." },
       { id: "C-061", text: "Take a picture with someone who traveled more than 1000 miles to attend AMUG." },
       { id: "C-062", text: "Take a picture with someone who has printed a part larger than their head." },
       { id: "C-063", text: "Take a picture with someone who has redesigned a traditional manufacturing part for additive." },
       { id: "C-064", text: "Take a picture with someone who works in additive manufacturing research." },
       { id: "C-065", text: "Take a picture with someone who has implemented additive manufacturing in their workplace." },
-      { id: "C-066", text: "Take a picture with someone who works in product development." },
       { id: "C-067", text: "Take a picture with someone who works for a company that uses additive manufacturing in production." },
       { id: "C-068", text: "Take a picture with someone who has helped teach another person how to use a 3D printer." },
       { id: "C-069", text: "Take a picture with someone who has a 3D printed part with them at AMUG." },
@@ -267,7 +263,7 @@
       { id: "R-048", text: "Take a picture with someone who uses additive for rapid tooling." },
       { id: "R-049", text: "Take a picture with someone who runs a digital manufacturing workflow." },
       { id: "R-050", text: "Take a picture with someone who has saved money using additive manufacturing." },
-      { id: "R-051", text: "Take a picture with someone who has printed a part larger than 24 inches (600mm)." }
+      { id: "R-051", text: "Take a picture with someone who has printed a part larger than 24 inches (600 mm)." }
     ];
 
     const legendary = [
@@ -323,19 +319,34 @@
       { id: "L-050", text: "Take a picture with someone who believes additive will transform manufacturing." }
     ];
 
-    function renderQuests(listId, quests) {
-      const container = document.getElementById(listId);
-      container.innerHTML = quests.map(q => `
-        <div class="quest">
-          <div class="quest-id">${q.id}</div>
-          <div class="quest-text">${q.text}</div>
-        </div>
-      `).join("");
+    function randomQuest(list) {
+      return list[Math.floor(Math.random() * list.length)];
     }
 
-    renderQuests("common-list", common);
-    renderQuests("rare-list", rare);
-    renderQuests("legendary-list", legendary);
+    function questCard(quest, rarity) {
+      return `
+        <section class="quest-card">
+          <div class="quest-rarity">${rarity} Quest</div>
+          <div class="quest-id">${quest.id}</div>
+          <div class="quest-text">${quest.text}</div>
+          <p class="quest-note"><strong>Completion:</strong> Bring your photo evidence to the <strong>SAVE POINT NPC</strong>.</p>
+        </section>
+      `;
+    }
+
+    function generateQuests() {
+      const selectedCommon = randomQuest(common);
+      const selectedRare = randomQuest(rare);
+      const selectedLegendary = randomQuest(legendary);
+
+      document.getElementById("questGrid").innerHTML =
+        questCard(selectedCommon, "Common") +
+        questCard(selectedRare, "Rare") +
+        questCard(selectedLegendary, "Legendary");
+    }
+
+    document.getElementById("generateBtn").addEventListener("click", generateQuests);
+    generateQuests();
   </script>
 </body>
 </html>
